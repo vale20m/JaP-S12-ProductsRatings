@@ -33,12 +33,35 @@ function showProducts(arreglo) {
         `<div class="container border py-1 my-1 shadow-sm p-3 bg-body rounded">
             <h4>${cutString(producto.title)}</h4>
             <h6 class="fw-light">${getDate()}</h6>
+            <p>${stars(producto.rating.rate)}</p>
         </div>`;
     }
 }
 
 function stars(cantidad) {
-
+    let estrellas = "";
+    let cont = 0;
+    if (Math.abs(cantidad - Math.round(cantidad)) < 0.25){
+        cantidad = Math.round(cantidad);
+        while (cantidad > 0){
+            estrellas += `<span class = "fa fa-star checked"></span>`;
+            cantidad--;
+            cont++;
+        }
+    } else {
+        while (cantidad > 1){
+            estrellas += `<span class = "fa fa-star checked"></span>`;
+            cantidad--;
+            cont++;
+        }
+        estrellas += `<span class = "fa fa-star-half-o checked"></span>`;
+        cont++;
+    }
+    while (cont < 5){
+        estrellas += `<span class = "fa fa-star unchecked"></span>`;
+        cont++;
+    }
+    return estrellas;
 }
 
 function cutString(titulo) {
