@@ -32,8 +32,7 @@ function showProducts(arreglo) {
         contenedor.innerHTML +=
         `<div class="container border py-1 my-1 shadow-sm p-3 bg-body rounded">
             <h4>${cutString(producto.title)}</h4>
-            <h6 class="fw-light">${getDate()}</h6>
-            <p>${stars(producto.rating.rate)}</p>
+            <h6 class="fw-light">${getDate()}  ${stars(producto.rating.rate)}</h6>
         </div>`;
     }
 }
