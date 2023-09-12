@@ -2,7 +2,6 @@ const URL = 'https://fakestoreapi.com/products';
 
 document.addEventListener("DOMContentLoaded", function (e) {
     fetchData(URL);
-    console.log(products);
 });
 
 let products = [];
@@ -24,8 +23,7 @@ async function fetchData(url) {
 }
 
 // DEFINE EL COMO LOS PRODUCTOS SE VAN A MOSTRAR EN LA PAGINA, AGREGANDOLOS AL HTML
-//class="position-absolute top-0 start-0"
-//class="position-absolute top-0 start-0"
+
 function showProducts(arreglo) {
     contenedor.innerHTML = "";
     for (const producto of arreglo) {
@@ -36,6 +34,8 @@ function showProducts(arreglo) {
         </div>`;
     }
 }
+
+// FUNCION QUE MUESTRA ESTRELLAS SEGUN LA PUNTUACION DEL PRODUCION (EN CASO DE ESTAR MAS CERCA DE .5 QUE DE UN ENTERO, AGREGA UNA MEDIA ESTRELLA)
 
 function stars(cantidad) {
     let estrellas = "";
@@ -63,13 +63,21 @@ function stars(cantidad) {
     return estrellas;
 }
 
-function cutString(titulo) {
-    if (titulo.length < 20){
+// FUNCION QUE ACORTA EL TITULO EN CASO DE QUE EL MISMO SUPERE LOS 20 CARACTERES
 
+function cutString(titulo) {
+    let tituloModificado = titulo;
+    if (titulo.length > 20){
+        tituloModificado = "";
+        for (let i = 0; i < 20; i++){
+            tituloModificado += titulo[i];
+        }
+        tituloModificado += "...";
     }
-    const tituloRecortado = titulo.length > 20 ? titulo.substring(0, 20) + "..." : titulo;
-    return tituloRecortado;
+    return tituloModificado;
 }
+
+// FUNCION QUE CONSIGUE LA FECHA Y HORA ACTUAL Y LA DEVUELVE COMO UN STRING
 
 function getDate(){
     const date = new Date();
